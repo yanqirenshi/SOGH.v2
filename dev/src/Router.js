@@ -8,22 +8,63 @@ import Loading from './panels/Loading.js';
 import Home from './pages2/Home.js';
 import Organaization from './pages2/Organaization.js';
 
+/*
+SITE MAP
+=======
+
+  /  Viewer [o]
+  |
+  +--- organaizations [x]
+  |      |
+  |      +--- :name [o]
+  |             |
+  |             +--- teams [x]
+  |             |      |
+  |             |      +--- :name [o]
+  |             |             |
+  |             |             +--- repositories [x]
+  |             |             |      |
+  |             |             |      `--- :name [o]
+  |             |             |             |
+  |             |             |             +--- issues [x]
+  |             |             |             |      |
+  |             |             |             |      `--- :number [o]
+  |             |             |             |
+  |             |             |             +--- pull-requests [x]
+  |             |             |                    |
+  |             |             |                    `--- :number [o]
+  |             |             `--- projects [x]
+  |             |                    |
+  |             |                    `--- :name [o]
+  |             |                           |
+  |             |                           `--- draft-issues [x]
+  |             |                                  |
+  |             |                                  `--- :number [o]
+  |             +--- repositories [x]
+  |             |      |
+  |             |      +--- :name [o]
+  |             |             |
+  |             |             +--- issues [x]
+  |             |             |      |
+  |             |             |      `--- :number [o]
+  |             |             |
+  |             |             +--- pull-requests [x]
+  |             |                    |
+  |             |                    `--- :number [o]
+                `--- projects [x]
+                       |
+                       +--- :name [o]
+                              |
+                              `--- draft-issues [x]
+                                     |
+                                     `--- :number [o]
+*/
+
 
 export default function Router () {
     return (
         <Routes>
 
-          {/*
-             /
-             /organaizations
-             /organaizations/:name
-             /organaizations/:name/teams/:name
-
-             /organaizations/:name/repositories
-             /organaizations/:name/repositories/:name
-             /organaizations/:name/teams/:name/repositories/:name
-
-            */}
           <Route path='/next' element={<Home/>} />
           <Route path='/next/organaizations/:login' element={<Organaization/>} />
           <Route path='/next/organaizations/:login/teams/:name' element={<Home/>} />

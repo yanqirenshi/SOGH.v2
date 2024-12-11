@@ -6,6 +6,7 @@ import { getOrganaization } from '../recoil2/ORGANAIZATION.js';
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import {P, H, LinkOS, LinkRR} from 'tion';
 
 import sogh from '../manegers/sogh.js';
 
@@ -47,6 +48,37 @@ function Contents (props) {
 
     return (
         <Box>
+
+          <Box sx={{display:'flex', alignItems: 'center'}}>
+            <P>
+              <LinkOS href={org.url()}>
+                <img src={org.avatarUrl()} width="33px"/>
+              </LinkOS>
+            </P>
+            <P>
+              <LinkRR href={'/organaizations/'+org.name()}>
+                {org.name()}
+              </LinkRR>
+            </P>
+          </Box>
+
+
+        <Box>
+          <H>Members</H>
+        </Box>
+
+        <Box>
+          <H>Teams</H>
+        </Box>
+
+        <Box>
+          <H>Repositoies</H>
+        </Box>
+
+        <Box>
+          <H>Projects</H>
+        </Box>
+
         </Box>
     );
 }

@@ -69,11 +69,11 @@ function Organaization (props) {
 
                 return (
                     <Box sx={{display:'flex', alignItems: 'center'}}>
-                      <p>
+                      <P>
                         <LinkOS href={org.url()}>
                           <img src={org.avatarUrl()} width="33px"/>
                         </LinkOS>
-                      </p>
+                      </P>
                       <P>
                         <LinkRR href={'/organaizations/'+org.name()}>
                           {org.name()}

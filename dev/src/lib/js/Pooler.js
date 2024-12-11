@@ -196,7 +196,7 @@ export default class Pooler extends Loader {
 
         // this.matchmaker.user(node);
 
-        return pool.ensure(node, (d)=> new model.Organization(d));
+        return pool.ensure(node, (d)=>  new model.Organization(d));
     }
     organizations (v) {
         return this.pool('organization').list();

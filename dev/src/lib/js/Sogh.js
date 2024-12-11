@@ -107,9 +107,7 @@ export default class Sogh extends Pooler {
         if (Array.isArray(node_or_nodes)) {
             const nodes = node_or_nodes;
 
-            return nodes.map(node=> {
-                return make(node).id();
-            });
+            return nodes.map(node=> make(node).id());
         }
 
         // case of node
@@ -388,6 +386,31 @@ export default class Sogh extends Pooler {
     /////
     ///// organization
     /////
+    async asyncFetchOrganaizationByViewer () {
+        const query = this.query('organization_by_viewer');
+
+        const post_data = this.postData(query);
+
+        // fetch
+        const response = await fetch(this.endpoint(), post_data)
+              .then(res  => this.text2json(res))
+              .then(res  => this.json2response(res, d=> {
+                  return d.data.viewer.organizations.edges;
+              }))
+              .catch(err => this.error2response(err));
+
+        // case of error
+        if ('error'===response.type)
+            return response.data;
+
+        // create object
+        const organizations
+              = this.node2objs(
+                  response.data,
+                  data=> this.node2organization(data.node));
+
+        return organizations;
+    }
     async asyncFetchOrganaizationByLogin (login) {
         const query = this.query('organization_by_login')
               .replace('@login', login);

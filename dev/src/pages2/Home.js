@@ -1,65 +1,88 @@
 import React, {Suspense} from 'react';
 
-import Box from '@mui/material/Box';
-
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-
 import { useRecoilState, useRecoilValue } from "recoil";
 import { GITHUB_AUTH } from '../recoil/GITHUB.js';
-import { getOrganaization } from '../recoil2/ORGANAIZATION.js';
+import { findOrganaizations } from '../recoil2/ORGANAIZATION.js';
 
-import Loading from '../panels/Loading.js';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 
 import sogh from '../manegers/sogh.js';
+import {P, S, H, LinkOS, LinkRR} from 'tion';
+
+import Loading from '../panels/Loading.js';
 
 export default function Home () {
     const github_auth = useRecoilValue(GITHUB_AUTH);
 
+    const viewer = sogh.viewer();
+
+    if (!viewer) return null;
+
     return (
         <Box sx={{height:'100%',width:'100%'}}>
 
-          <Box sx={{p:3}}>
+          <Container sx={{height:'100%', background:'#fff'}}>
+            <Box sx={{display:'flex', alignItems: 'center'}}>
+              <p>
+                <LinkOS href={viewer.url()}>
+                  <img src={viewer.avatarUrl()} width="33px"/>
+                </LinkOS>
+              </p>
+              <P>
+                {viewer.name()} @{viewer.login()}
+              </P>
+            </Box>
 
-            <Island title="Organaizations"/>
-            <Island title="Teams"/>
-            <Island title="Pull Requests"/>
-            <Island title="Draft Issues"/>
-            <Island title="Issues"/>
+            <Box>
+              <p>
+                {viewer.email()}
+              </p>
+            </Box>
 
+            <Box>
+              {viewer.company()}
+            </Box>
+
+            <Suspense fallback={<Loading/>}>
+              <Organaization viewer={viewer}/>
+            </Suspense>
+
+          </Container>
+
+        </Box>
+    );
+}
+
+function Organaization (props) {
+    const { viewer } = props;
+
+    const organizations = useRecoilValue(findOrganaizations(viewer.login()));
+
+    return (
+        <Box>
+          <H>Organaization</H>
+
+          <Box sx={{mt:2}}>
+            {organizations.map(id=> {
+                const org = sogh.organization(id);
+
+                return (
+                    <Box sx={{display:'flex', alignItems: 'center'}}>
+                      <p>
+                        <LinkOS href={org.url()}>
+                          <img src={org.avatarUrl()} width="33px"/>
+                        </LinkOS>
+                      </p>
+                      <P>
+                        <LinkRR href={'/organaizations/'+org.name()}>
+                          {org.name()}
+                        </LinkRR>
+                      </P>
+                    </Box>
+                );
+            })}
           </Box>
-
-        </Box>
-    );
-}
-
-function Island (props) {
-    const viewer = sogh.viewer();
-
-    return (
-        <Box sx={{mb: 3}}>
-          <Typography variant="h4" component="div">
-            {props.title}
-          </Typography>
-
-          <Suspense fallback={<Loading/>}>
-            <IslandContents login={viewer.login()}/>
-          </Suspense>
-        </Box>
-    );
-}
-
-function IslandContents (props) {
-    const { login } = props;
-
-    const x = useRecoilValue(getOrganaization(login));
-
-    return (
-        <Box sx={{mb: 3}}>
-          {props.children}
         </Box>
     );
 }

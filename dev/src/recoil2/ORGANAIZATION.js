@@ -8,3 +8,10 @@ export const getOrganaization = recoil.selectorFamily({
         return await sogh.asyncFetchOrganaizationByLogin(login);
     },
 });
+
+export const findOrganaizations = recoil.selectorFamily({
+    key: 'GITHUB_ORGANAIZATION',
+    get: login => async () => {
+        return await sogh.asyncFetchOrganaizationByViewer();
+    },
+});

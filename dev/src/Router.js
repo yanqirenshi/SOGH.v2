@@ -9,55 +9,57 @@ import Home from './pages2/Home.js';
 import Organaization from './pages2/Organaization.js';
 
 /*
+
 SITE MAP
 =======
 
-  /  Viewer [o]
+  /  Viewer : Home.js
   |
-  +--- organaizations [x]
+  +--- organaizations : ---
   |      |
-  |      +--- :name [o]
+  |      +--- :name : Organaization.js
   |             |
-  |             +--- teams [x]
+  |             +--- teams : ---
   |             |      |
-  |             |      +--- :name [o]
+  |             |      +--- :name : OrgTeam.js
   |             |             |
-  |             |             +--- repositories [x]
+  |             |             +--- repositories : ---
   |             |             |      |
-  |             |             |      `--- :name [o]
+  |             |             |      `--- :name : OrgTeamRepository.js
   |             |             |             |
-  |             |             |             +--- issues [x]
+  |             |             |             +--- issues : ---
   |             |             |             |      |
-  |             |             |             |      `--- :number [o]
+  |             |             |             |      `--- :number : o
   |             |             |             |
-  |             |             |             +--- pull-requests [x]
+  |             |             |             +--- pull-requests : ---
   |             |             |                    |
-  |             |             |                    `--- :number [o]
-  |             |             `--- projects [x]
+  |             |             |                    `--- :number : o
+  |             |             `--- projects : ---
   |             |                    |
-  |             |                    `--- :name [o]
+  |             |                    `--- :name : OrgTeamProject.js
   |             |                           |
-  |             |                           `--- draft-issues [x]
+  |             |                           `--- draft-issues : ---
   |             |                                  |
-  |             |                                  `--- :number [o]
-  |             +--- repositories [x]
+  |             |                                  `--- :number : o
+  |             +--- repositories : ---
   |             |      |
-  |             |      +--- :name [o]
+  |             |      +--- :name : OrgRepository.js
   |             |             |
-  |             |             +--- issues [x]
+  |             |             +--- issues : ---
   |             |             |      |
-  |             |             |      `--- :number [o]
+  |             |             |      `--- :number : o
   |             |             |
-  |             |             +--- pull-requests [x]
+  |             |             +--- pull-requests : ---
   |             |                    |
-  |             |                    `--- :number [o]
-                `--- projects [x]
-                       |
-                       +--- :name [o]
-                              |
-                              `--- draft-issues [x]
-                                     |
-                                     `--- :number [o]
+  |             |                    `--- :number : o
+  |             `--- projects : ---
+  |                    |
+  |                    +--- :name : OrgProject.js
+  |                           |
+  |                           `--- draft-issues : ---
+  |                                  |
+  |                                  `--- :number : o
+
 */
 
 
@@ -65,60 +67,9 @@ export default function Router () {
     return (
         <Routes>
 
-          <Route path='/next' element={<Home/>} />
-          <Route path='/next/organaizations/:login' element={<Organaization/>} />
-          <Route path='/next/organaizations/:login/teams/:name' element={<Home/>} />
-
-          {/* /scrum root. viewer の画面 */}
-          <Route path='/' element={<page.Scrum/>} />
-
-          {/*       */}
-          {/* Scrum */}
-          {/*       */}
-          {/* /scrum/releases */}
-          {/* /scrum/releases/:id */}
-          {/* /scrum/sprints */}
-          {/* /scrum/sprints/:id */}
-          {/* /scrum/teams */}
-          {/* /scrum/teams/:id? */}
-          {/* /scrum/parsons */}
-          {/* /scrum/parsons/:id? */}
-          {/* /scrum/users */}
-          {/* /scrum/users/:user-login */}
-
-          {/*       */}
-          {/* Github */}
-          {/*       */}
-          {/* ProjectV2 */}
-          {/* /scrum/users/:user-login/projects */}
-          {/* /scrum/users/:user-login/projects/:project-num */}
-          <Route path='/scrum/users/:login/projects'         element={<page.Scrum/>} />
-          <Route path='/scrum/users/:login/projects/:number' element={<page.ScrumProject/>} />
-
-          {/* ProjectV2 Item */}
-          {/* /scrum/users/:user-login/projects/:project-num/items/:item-id */}
-          <Route path='/scrum/users/:login/projects/:number/items/:id' element={<page.ScrumProjectItem/>} />
-
-          {/* Repository */}
-          {/* /scrum/users/:user-login/repositories */}
-          {/* /scrum/users/:user-login/repositories/:repository-name */}
-          <Route path='/scrum/users/:login/repositories/:repository' element={<page.Scrum/>} />
-
-          {/* Issue */}
-          {/* /scrum/users/:user-login/repositories/:repository-name/issues/:num */}
-          <Route path='/scrum/users/:login/repositories/:repository/issues/:number' element={<page.ScrumIssue/>} />
-
-          {/* Pull requests */}
-          {/* /scrum/users/:user-login/repositories/:repository-name/pull/:num */}
-          <Route path='/scrum/users/:login/repositories/:repository/pull/:num' element={<page.Scrum/>} />
-
-          {/* Actions */}
-          {/* /scrum/users/:user-login/repositories/:repository-name/actions/:num */}
-          <Route path='/scrum/users/:login/repositories/:repository/actions/:num' element={<page.Scrum/>} />
-
-          {/* Discussions */}
-          {/* /scrum/users/:user-login/repositories/:repository-name/discussions/:num */}
-          <Route path='/scrum/users/:login/repositories/:repository/discussions/:num' element={<page.Scrum/>} />
+          <Route path='/' element={<Home/>} />
+          <Route path='/organaizations/:login' element={<Organaization/>} />
+          <Route path='/organaizations/:login/teams/:name' element={<Home/>} />
 
           {/* == iHub ================================================================ */}
           <Route path='/cockpit'

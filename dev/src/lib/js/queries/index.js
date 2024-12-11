@@ -14,6 +14,7 @@ export { default as issues_open_by_repository } from './issues_open_by_repositor
 export { default as labels_by_repository } from './labels_by_repository.js';
 export { default as milestone_by_reposigory } from './milestones_by_repository.js';
 export { default as organization_by_login } from './organization_by_login.js';
+export { default as organization_by_viewer } from './organization_by_viewer.js';
 export { default as project_by_id } from './project_by_id.js';
 export { default as projects_by_repository } from './projects_by_repository.js';
 export { default as projects_next_by_id } from './projects_next_by_id.js';
@@ -33,6 +34,7 @@ export { default as search_issues } from './search_issues.js';
 export { default as update_issue_body } from './update_issue_body.js';
 export { default as user_by_id } from './user_by_id.js';
 export { default as viwer } from './viwer.js';
+
 
 export { default as create_issue_comment } from './create_issue_comment.js';
 export { default as delete_issue_comment } from './delete_issue_comment.js';

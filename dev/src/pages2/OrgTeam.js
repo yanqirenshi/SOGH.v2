@@ -1,11 +1,10 @@
 import React, {Suspense} from 'react';
-import { useParams } from 'react-router-dom';
 
 import { useRecoilValue } from "recoil";
-import { getOrganaization } from '../recoil2/ORGANAIZATION.js';
+import { useParams } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
+import { getOrganaization } from '../recoil2/ORGANAIZATION.js';
 
 import sogh from '../manegers/sogh.js';
 
@@ -22,16 +21,14 @@ export default function Organaization () {
     if (!github_auth)
         return null;
 
+
     return (
-        <Box sx={{height:'100%',width:'100%'}}>
+        <Box>
+          <SideMenu />
 
-          <Container sx={{height:'100%', background:'#fff'}}>
-
-            <Suspense fallback={<Loading/>}>
-              <Contents login={login}/>
-            </Suspense>
-
-          </Container>
+          <Suspense fallback={<Loading/>}>
+            <Contents login={login}/>
+          </Suspense>
 
         </Box>
     );
@@ -40,13 +37,10 @@ export default function Organaization () {
 function Contents (props) {
     const { login } = props;
 
-    const id = useRecoilValue(getOrganaization(login));
-    const org = sogh.organization(id);
-
-    console.log(org);
+    const x = useRecoilValue(getOrganaization(login));
+    console.log(x);
 
     return (
-        <Box>
-        </Box>
+        <Box/>
     );
 }

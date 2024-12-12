@@ -31,6 +31,7 @@ export { default as projectv2items_by_user_login_projectv2_number } from './proj
 export { default as repositories_by_viewer } from './repositories_by_viewer.js';
 export { default as repository } from './repository.js';
 export { default as search_issues } from './search_issues.js';
+export { default as team_by_login_teamname } from './team_by_login_teamname.js';
 export { default as update_issue_body } from './update_issue_body.js';
 export { default as user_by_id } from './user_by_id.js';
 export { default as viwer } from './viwer.js';

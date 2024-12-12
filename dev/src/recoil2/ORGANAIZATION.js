@@ -10,7 +10,7 @@ export const getOrganaization = recoil.selectorFamily({
 });
 
 export const findOrganaizations = recoil.selectorFamily({
-    key: 'GITHUB_ORGANAIZATION',
+    key: 'GITHUB_FIND-ORGANAIZATION',
     get: login => async () => {
         return await sogh.asyncFetchOrganaizationByViewer();
     },

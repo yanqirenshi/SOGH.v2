@@ -436,6 +436,34 @@ export default class Sogh extends Pooler {
         return obj.id();
     }
     /////
+    ///// Team
+    /////
+    async asyncFetchTeamByLoginTeamName (login, team_name) {
+        const query = this.query('team_by_login_teamname')
+              .replace('@login', login)
+              .replace('@team-name', team_name);
+
+        const post_data = this.postData(query);
+
+        // fetch
+        const response = await fetch(this.endpoint(), post_data)
+              .then(res  => this.text2json(res))
+              .then(res  => this.json2response(res, d=> {
+                  return d.data.organization.teams.edges[0] || null;
+              }))
+              .catch(err => this.error2response(err));
+
+        // case of error
+        if ('error'===response.type)
+            return response.data;
+
+        // nodes 2 objs and pooling
+        if (!response.data.node)
+            return null;
+
+        return this.node2team(response.data.node).id();
+    }
+    /////
     ///// Repository
     /////
     async asyncFetchRepositoriesByViewer () {

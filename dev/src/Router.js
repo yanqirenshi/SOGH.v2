@@ -7,6 +7,7 @@ import Loading from './panels/Loading.js';
 
 import Home from './pages2/Home.js';
 import Organaization from './pages2/Organaization.js';
+import OrgTeam from './pages2/OrgTeam.js';
 
 /*
 
@@ -69,7 +70,7 @@ export default function Router () {
 
           <Route path='/' element={<Home/>} />
           <Route path='/organaizations/:login' element={<Organaization/>} />
-          <Route path='/organaizations/:login/teams/:name' element={<Home/>} />
+          <Route path='/organaizations/:login/teams/:team_name' element={<OrgTeam/>} />
 
           {/* == iHub ================================================================ */}
           <Route path='/cockpit'

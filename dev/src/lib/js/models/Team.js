@@ -29,4 +29,24 @@ export default class Team extends GraphQLNode {
 
         return this.sogh().organization(id) ;
     }
+    members () {
+        return this.cores2objects(
+            (sogh, edge)=> sogh.user(edge.node.id),
+            this.core().members);
+    }
+    projectsV2 () {
+        return this.cores2objects(
+            (sogh, edge)=> sogh.projectV2(edge.node.id),
+            this.core().projectsV2);
+    }
+    repositories () {
+        return this.cores2objects(
+            (sogh, edge)=> sogh.repository(edge.node.id),
+            this.core().repositories);
+    }
+    teams () {
+        return this.cores2objects(
+            (sogh, edge)=> sogh.team(edge.node.id),
+            this.core().teams);
+    }
 }

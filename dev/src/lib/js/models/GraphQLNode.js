@@ -24,4 +24,12 @@ export default class GraphQLNode {
     updatedAt () {
         return this._core.updatedAt || null;
     }
+    cores2objects (getter, cores) {
+        if (!cores)
+            return [];
+
+        const sogh = this.sogh();
+
+        return cores.edges.map(edge => getter(sogh, edge));
+    }
 }

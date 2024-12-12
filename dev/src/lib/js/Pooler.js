@@ -107,10 +107,9 @@ export default class Pooler extends Loader {
             node,
             (d)=> new item_class(d),
             (obj, node)=> {
-                obj.core('----------');
-                obj.core(obj.core());
-                obj.core(node);
-
+                // obj.core('----------');
+                // obj.core(obj.core());
+                // obj.core(node);
                 obj.core(node);
             });
     }
@@ -225,10 +224,25 @@ export default class Pooler extends Loader {
     /* **************************************************************** *
      *  Team                                                    *
      * **************************************************************** */
-    node2team (node) { // , matchmaking=false
+    node2team (node, matchmaking=false) {
         const pool = this.pool('team');
 
-        // const mm = this.matchmaker;
+        // マッチメイク中じゃない場合、マッチメイクする。
+        if (!matchmaking) {
+            const mm = this.matchmaker;
+
+            if (node.members)
+                node.members.edges.forEach((d)=> mm.user(d.node));
+
+            if (node.projectsV2)
+                node.projectsV2.edges.forEach((d)=> mm.projectV2(d.node));
+
+            if (node.repositories)
+                node.repositories.edges.forEach((d)=> mm.repository(d.node));
+
+            if (node.childTeams)
+                node.childTeams.edges.forEach((d)=> mm.team(d.node));
+        }
 
         return pool.ensure(node, (d)=>  new model.Team(d));
     }

@@ -14,6 +14,9 @@ const query = `{
       edges {
         node {
           ${attr.team()}
+          organization {
+            id
+          }
         }
       }
     }

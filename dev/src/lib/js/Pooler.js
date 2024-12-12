@@ -20,6 +20,7 @@ export default class Pooler extends Loader {
             ['issue-comment',   model.IssueComment],
             ['pull-request',    model.PullRequest],
             ['organization',    model.Organization],
+            ['team',            model.Team],
         ].reduce((ht, data)=> {
             const key = data[0];
 
@@ -208,8 +209,8 @@ export default class Pooler extends Loader {
         if (node.repositories)
             node.repositories.edges.forEach((d)=> mm.repository(d.node));
 
-        // if (node.teams)
-        //     console.log(node.teams.edges);
+        if (node.teams)
+            node.teams.edges.forEach((d)=> mm.team(d.node));
 
         return pool.ensure(node, (d)=>  new model.Organization(d));
     }
@@ -218,6 +219,26 @@ export default class Pooler extends Loader {
     }
     organization (v) {
         const pool = this.pool('organization');
+
+        return pool.get(v);
+    }
+    /* **************************************************************** *
+     *  Team                                                    *
+     * **************************************************************** */
+    node2team (node) { // , matchmaking=false
+        const pool = this.pool('team');
+
+        const mm = this.matchmaker;
+
+        // match maker ...
+
+        return pool.ensure(node, (d)=>  new model.Team(d));
+    }
+    teams (v) {
+        return this.pool('team').list();
+    }
+    team (v) {
+        const pool = this.pool('team');
 
         return pool.get(v);
     }

@@ -8,9 +8,12 @@ export default class Matchmaker {
         //     this.sogh.node2user(node.owner);
     }
     user (node) {
-        const x = this.sogh.node2user(node, true);
+        this.sogh.node2user(node, true);
     }
     projectV2 (node) {
         return node;
+    }
+    team (node) {
+        this.sogh.node2team(node, true);
     }
 }

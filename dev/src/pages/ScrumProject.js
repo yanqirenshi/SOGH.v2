@@ -23,10 +23,6 @@ export default function ScrumProject (props) {
 }
 
 function Project () {
-    const [priority, setPriority] = React.useState(null);
-    const [plan, setPlan] = React.useState(null);
-    const [result, setResult] = React.useState(null);
-
     const {login, number} = useParams();
     const nav = useNavigate();
 
@@ -66,12 +62,6 @@ function Project () {
         result: {
             change: (project_id, start, end)=> console.log(['result', project_id, start, end])
         }
-    };
-
-    const change = (type,v)=> {
-        if ('priority'===type) setPriority(v);
-        if ('plan'===type)     setPlan(v);
-        if ('result'===type)   setResult(v);
     };
 
     return (

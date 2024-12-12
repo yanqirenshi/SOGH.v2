@@ -6,14 +6,15 @@ import { getOrganaization } from '../recoil2/ORGANAIZATION.js';
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import {P, H, LinkOS, LinkRR} from 'tion';
+import {H} from 'tion';
 
 import sogh from '../manegers/sogh.js';
 
 import { GITHUB_AUTH } from '../recoil/GITHUB.js';
 
-import SideMenu from '../assemblies/SideMenu.js';
 import Loading from '../panels/Loading.js';
+
+import ItemOrganization from 'assemblies2/ItemOrganization.js';
 
 export default function Organaization () {
     const { login } = useParams();
@@ -44,40 +45,28 @@ function Contents (props) {
     const id = useRecoilValue(getOrganaization(login));
     const org = sogh.organization(id);
 
-    console.log(org);
-
     return (
         <Box>
 
-          <Box sx={{display:'flex', alignItems: 'center'}}>
-            <P>
-              <LinkOS href={org.url()}>
-                <img src={org.avatarUrl()} width="33px"/>
-              </LinkOS>
-            </P>
-            <P>
-              <LinkRR href={'/organaizations/'+org.name()}>
-                {org.name()}
-              </LinkRR>
-            </P>
+          <Box sx={{p:1}}>
+            <ItemOrganization value={org}/>
           </Box>
 
+          <Box>
+            <H>Members</H>
+          </Box>
 
-        <Box>
-          <H>Members</H>
-        </Box>
+          <Box>
+            <H>Teams</H>
+          </Box>
 
-        <Box>
-          <H>Teams</H>
-        </Box>
+          <Box>
+            <H>Repositoies</H>
+          </Box>
 
-        <Box>
-          <H>Repositoies</H>
-        </Box>
-
-        <Box>
-          <H>Projects</H>
-        </Box>
+          <Box>
+            <H>Projects</H>
+          </Box>
 
         </Box>
     );

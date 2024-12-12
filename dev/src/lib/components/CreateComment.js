@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 
 import Tabs from './CreateComment/Tabs.js';
 import TabFinishToday from './CreateComment/TabFinishToday.js';
@@ -68,7 +67,6 @@ export default function CreateComment (props) {
     };
 
     const tab = tabs.list.find(d=> d.code===tabs.selected);
-    const tab_code = tab.code;
     const editor_type = tab.editor.type;
 
     return (

@@ -1,20 +1,17 @@
 import React, {Suspense} from 'react';
 
-import { useRecoilState, useRecoilValue } from "recoil";
-import { GITHUB_AUTH } from '../recoil/GITHUB.js';
+import { useRecoilValue } from "recoil";
 import { findOrganaizations } from '../recoil2/ORGANAIZATION.js';
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
 import sogh from '../manegers/sogh.js';
-import {P, S, H, LinkOS, LinkRR} from 'tion';
+import {P, H, LinkOS, LinkRR} from 'tion';
 
 import Loading from '../panels/Loading.js';
 
 export default function Home () {
-    const github_auth = useRecoilValue(GITHUB_AUTH);
-
     const viewer = sogh.viewer();
 
     if (!viewer) return null;

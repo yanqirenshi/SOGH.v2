@@ -4,14 +4,11 @@ import moment from 'moment';
 import TableContainer from '@mui/material/TableContainer';
 import MTable from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import Cell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 import TableBodyRow from './TableBodyRow.js';
-import TableBodyRowProject from './TableBodyRowProject.js';
-import TableBodyRowTasks from './TableBodyRowTasks.js';
 import HeadCell from './HeadCell.js';
 
 export default function Table (props) {

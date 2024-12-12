@@ -7,7 +7,6 @@ import Select from '@mui/material/Select';
 
 export default function Parsons (props) {
     const members = props.members;
-    const type = props.type;
     const value = props.value;
     const onChange = props.onChange;
 

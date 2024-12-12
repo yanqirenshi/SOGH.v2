@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 
 import TableBodyRowProject from './TableBodyRowProject.js';
 import TableBodyRowTasks from './TableBodyRowTasks.js';
@@ -11,8 +10,6 @@ export default function TableBodyRow (props) {
     const actions = props.actions;
     const is_opened = props.opened;
     const onChange = props.onChange;
-
-    const project_id = project.id();
 
     return (
         <>

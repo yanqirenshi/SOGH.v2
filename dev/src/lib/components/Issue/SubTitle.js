@@ -3,7 +3,6 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
-import Button from '@mui/material/Button';
 
 import Link from '../common/Link.js';
 

@@ -1,8 +1,8 @@
 import * as attr from './attributes.js';
 
-const MAX_FIELD_NUM = 20;
-const MAX_LABEL_NUM = 20;
-const MAX_PR_NUM = 20;
+// const MAX_FIELD_NUM = 20;
+// const MAX_LABEL_NUM = 20;
+// const MAX_PR_NUM = 20;
 
 const query = `{
   node (id:"@team-id"){

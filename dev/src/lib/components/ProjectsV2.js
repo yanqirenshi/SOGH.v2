@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 
 import Table from './projectsV2/Table.js';
 
-import Cell from '@mui/material/TableCell';
 import S from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 

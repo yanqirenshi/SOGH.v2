@@ -3,7 +3,6 @@ import { DateTime } from 'luxon';
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import Cell from '@mui/material/TableCell';
 import S from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
@@ -243,7 +242,6 @@ const columns = [
         sx: {p:0.1},
         val: (column, data)=> {
             const project = data.project;
-            const actions = data.actions;
             const is_opened = data.is_opened;
             const onChange = data.onChange;
 

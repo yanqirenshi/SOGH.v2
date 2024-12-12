@@ -27,20 +27,11 @@ export default function OrgTeam () {
     if (!github_auth)
         return null;
 
-
     return (
         <Box sx={{height:'100%',width:'100%', overflow:'auto'}}>
-
-          <Container sx={{height:'100%'}}>
-
-            <Breadcrumb/>
-
-            <Suspense fallback={<Loading/>}>
-              <Contents login={login} team_name={team_name}/>
-            </Suspense>
-
-          </Container>
-
+          <Suspense fallback={<Loading/>}>
+            <Contents login={login} team_name={team_name}/>
+          </Suspense>
         </Box>
     );
 }
@@ -59,8 +50,16 @@ function Contents (props) {
     return (
         <Box sx={{pb:33}}>
 
-          <Box sx={{pt:6, pb:2}}>
-          </Box>
+          <Container sx={{height:'100%'}}>
+            <Breadcrumb/>
+
+            <Box sx={{mt:1}}>
+              <H>
+                {team_name}
+              </H>
+            </Box>
+          </Container>
+
 
           <Box sx={{mt:3, pl:5, pr:5}}>
             <Box>
@@ -80,7 +79,6 @@ function Contents (props) {
                </Box>
              </Box>}
           </Box>
-
 
           <Box sx={{mt:6}}>
             <H>Repositoies</H>

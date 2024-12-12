@@ -1,4 +1,4 @@
-import {Table} from 'tion'; // P, LinkOS, LinkRR
+import {Table, LinkRR} from 'tion'; // P, LinkOS, LinkRR
 
 export default function TableProjects (props) {
     const projects = props.value;
@@ -41,7 +41,11 @@ const columns = [
         label: 'Name',
         sx: {whiteSpace: 'nowrap'},
         val: (row)=> {
-            return row.title();
+            return (
+                <LinkRR href={`${window.location.pathname}/projects/${row.number()}`}>
+                  {row.title()}
+                </LinkRR>
+            );
         },
     },
     {

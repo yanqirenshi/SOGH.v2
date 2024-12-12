@@ -23,6 +23,10 @@ export default class Team extends GraphQLNode {
         return this._core.avatarUrl || null;
     }
     organization () {
-        return this._core.organization || null;
+        const id = this.core().organization.id;
+
+        if (!id) return null;
+
+        return this.sogh().organization(id) ;
     }
 }

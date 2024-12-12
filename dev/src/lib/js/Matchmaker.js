@@ -3,15 +3,13 @@ export default class Matchmaker {
         this.sogh = sogh;
     }
     repository (node) {
-        return node;
-        // if (node.owner)
-        //     this.sogh.node2user(node.owner);
+        this.sogh.node2repository(node, true);
     }
     user (node) {
         this.sogh.node2user(node, true);
     }
     projectV2 (node) {
-        return node;
+        this.sogh.node2projectV2(node, true);
     }
     team (node) {
         this.sogh.node2team(node, true);

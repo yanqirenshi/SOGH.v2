@@ -3,11 +3,14 @@ import {P, LinkOS, LinkRR} from 'tion';
 
 export default function ItemOrganization (props) {
     const org = props.value;
+    const sx = props.sx;
 
     if (!org) return null;
 
     return (
-        <Box sx={{display:'flex', alignItems: 'center'}}>
+        <Box sx={{
+            ...sx,
+            ...{display:'flex', alignItems: 'center'}}}>
 
           <P>
             <LinkOS href={org.url()}>

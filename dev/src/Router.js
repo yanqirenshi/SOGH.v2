@@ -10,61 +10,6 @@ import Organaization from './pages2/Organaization.js';
 import OrgTeam from './pages2/OrgTeam.js';
 import OrgTeamProject from './pages2/OrgTeamProject.js';
 
-/*
-
-SITE MAP
-=======
-
-  /  Viewer : Home.js
-  |
-  +--- organaizations : ---
-  |      |
-  |      +--- :name : Organaization.js
-  |             |
-  |             +--- teams : ---
-  |             |      |
-  |             |      +--- :name : OrgTeam.js
-  |             |             |
-  |             |             +--- repositories : ---
-  |             |             |      |
-  |             |             |      `--- :name : OrgTeamRepository.js
-  |             |             |             |
-  |             |             |             +--- issues : ---
-  |             |             |             |      |
-  |             |             |             |      `--- :number : o
-  |             |             |             |
-  |             |             |             +--- pull-requests : ---
-  |             |             |                    |
-  |             |             |                    `--- :number : o
-  |             |             `--- projects : ---
-  |             |                    |
-  |             |                    `--- :name : OrgTeamProject.js
-  |             |                           |
-  |             |                           `--- draft-issues : ---
-  |             |                                  |
-  |             |                                  `--- :number : o
-  |             +--- repositories : ---
-  |             |      |
-  |             |      +--- :name : OrgRepository.js
-  |             |             |
-  |             |             +--- issues : ---
-  |             |             |      |
-  |             |             |      `--- :number : o
-  |             |             |
-  |             |             +--- pull-requests : ---
-  |             |                    |
-  |             |                    `--- :number : o
-  |             `--- projects : ---
-  |                    |
-  |                    +--- :name : OrgProject.js
-  |                           |
-  |                           `--- draft-issues : ---
-  |                                  |
-  |                                  `--- :number : o
-
-*/
-
-
 export default function Router () {
     return (
         <Routes>

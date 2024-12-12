@@ -17,7 +17,6 @@ import Loading from '../panels/Loading.js';
 import ItemOrganization from 'assemblies2/ItemOrganization.js';
 import ItemMember from 'assemblies2/ItemMember.js';
 import ItemTeam from 'assemblies2/ItemTeam.js';
-import CardTeam from 'assemblies2/CardTeam.js';
 import TableRepositories from 'assemblies2/TableRepositories.js';
 import TableProjects from 'assemblies2/TableProjects.js';
 

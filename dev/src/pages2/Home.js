@@ -7,9 +7,10 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
 import sogh from '../manegers/sogh.js';
-import {P, H, LinkOS, LinkRR} from 'tion';
+import {H} from 'tion';
 
 import Loading from '../panels/Loading.js';
+import ItemOrganization from 'assemblies2/ItemOrganization.js';
 
 export default function Home () {
     const viewer = sogh.viewer();
@@ -20,17 +21,6 @@ export default function Home () {
         <Box sx={{height:'100%',width:'100%'}}>
 
           <Container sx={{height:'100%', background:'#fff'}}>
-            <Box sx={{display:'flex', alignItems: 'center'}}>
-              <p>
-                <LinkOS href={viewer.url()}>
-                  <img src={viewer.avatarUrl()} width="33px"/>
-                </LinkOS>
-              </p>
-              <P>
-                {viewer.name()} @{viewer.login()}
-              </P>
-            </Box>
-
             <Box>
               <p>
                 {viewer.email()}
@@ -64,20 +54,7 @@ function Organaization (props) {
             {organizations.map(id=> {
                 const org = sogh.organization(id);
 
-                return (
-                    <Box sx={{display:'flex', alignItems: 'center'}}>
-                      <P>
-                        <LinkOS href={org.url()}>
-                          <img src={org.avatarUrl()} width="33px"/>
-                        </LinkOS>
-                      </P>
-                      <P>
-                        <LinkRR href={'/organaizations/'+org.name()}>
-                          {org.name()}
-                        </LinkRR>
-                      </P>
-                    </Box>
-                );
+                return <ItemOrganization value={org}/>;
             })}
           </Box>
         </Box>

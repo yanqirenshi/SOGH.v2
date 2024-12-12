@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box';
-import {P, LinkOS, LinkRR} from 'tion';
+import {P, LinkOS} from 'tion'; // , LinkRR
 
 export default function ItemMember (props) {
     const member = props.value;

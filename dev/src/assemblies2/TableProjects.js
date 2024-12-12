@@ -21,7 +21,7 @@ export default function TableProjects (props) {
 
     return (
         <Table columns={columns}
-               rows={projects}
+               rows={sorted_projects}
                ids={{column: (col,i)=> i, row: (row,i)=> i}}
                sx={sx}/>
     );

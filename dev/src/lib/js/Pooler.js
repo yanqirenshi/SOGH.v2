@@ -228,9 +228,7 @@ export default class Pooler extends Loader {
     node2team (node) { // , matchmaking=false
         const pool = this.pool('team');
 
-        const mm = this.matchmaker;
-
-        // match maker ...
+        // const mm = this.matchmaker;
 
         return pool.ensure(node, (d)=>  new model.Team(d));
     }

@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box';
-import {P, LinkOS, LinkRR} from 'tion';
+import {P, LinkRR} from 'tion'; //, LinkOS
 
 export default function ItemTeam (props) {
     const team = props.value;
@@ -14,11 +14,11 @@ export default function ItemTeam (props) {
         }}>
 
           <P>
-            <LinkOS href={team.url()}>
+            <LinkRR href={teamUrl(team)}>
               <img src={team.avatarUrl()}
                    alt={team.name()}
                    width="33px"/>
-            </LinkOS>
+            </LinkRR>
           </P>
 
           {/* <P sx={{pl:2}}> */}
@@ -29,4 +29,12 @@ export default function ItemTeam (props) {
 
         </Box>
     );
+}
+
+function teamUrl (team) {
+    const org = team.organization();
+
+    if (!org) return null;
+
+    return `/organaizations/${org.name()}/teams/${team.name()}`;
 }

@@ -1,6 +1,6 @@
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import {P, LinkOS, LinkRR} from 'tion';
+import {P, LinkRR} from 'tion'; // , LinkOS
 
 export default function CardRepository (props) {
     const repository = props.value;

@@ -21,7 +21,7 @@ export default function TableRepositories (props) {
 
     return (
         <Table columns={columns}
-               rows={repositories}
+               rows={sorted_repositories}
                ids={{column: (col,i)=> i, row: (row,i)=> i}}
                sx={sx}/>
     );

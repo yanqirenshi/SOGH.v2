@@ -1,11 +1,12 @@
 import React, {Suspense} from 'react';
+import Measure from 'react-measure';
 
 import { useRecoilValue } from "recoil";
 import { useParams } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import {H} from 'tion';
+import {H, P, Tabs, LinkOS} from 'tion';
 import { getProjectAtOrg } from '../recoil2/PROJECT.js';
 
 import sogh from '../manegers/sogh.js';
@@ -16,7 +17,7 @@ import Loading from 'panels/Loading.js';
 import Breadcrumb from 'assemblies2/Breadcrumb.js';
 
 export default function OrgTeamProject () {
-    const { login, team_name, prj_number } = useParams();
+    const { login, prj_number } = useParams();
 
     const github_auth = useRecoilValue(GITHUB_AUTH);
 
@@ -24,24 +25,18 @@ export default function OrgTeamProject () {
         return null;
 
     return (
-        <Box sx={{height:'100%',width:'100%', overflow:'auto'}}>
-
-          <Container sx={{height:'100%'}}>
-
-            <Breadcrumb/>
-
-            <Suspense fallback={<Loading/>}>
-              <Contents login={login} prj_number={prj_number}/>
-            </Suspense>
-
-          </Container>
-
+        <Box sx={{height:'100%',width:'100%'}}>
+          <Suspense fallback={<Loading/>}>
+            <Contents login={login} prj_number={prj_number}/>
+          </Suspense>
         </Box>
     );
 }
 
 function Contents (props) {
     const { login, prj_number } = props;
+
+    const [bounds, setBounds] = React.useState({height:0});
 
     const id = useRecoilValue(getProjectAtOrg({login, prj_number}));
 
@@ -52,32 +47,65 @@ function Contents (props) {
     if (!prj) return null;
 
     return (
+        <>
+          <Measure bounds onResize={contentRect => setBounds(contentRect.bounds)}>
+            {({ measureRef }) => (
+                <Header ref={measureRef} value={prj}/>
+            )}
+          </Measure>
+
+          <Box sx={{
+              height:`calc(100% - ${bounds.height}px)`,
+              background:'#fff',
+              overflow:'auto'
+          }}>
+          </Box>
+        </>
+    );
+}
+
+function Header (props) {
+    const prj = props.value;
+    const ref = props.ref;
+
+    const [tabs, setTabs] = React.useState({
+        selected: 't1',
+        list: [
+            { code: 't1', label: 'Tasks(Board)' },
+            { code: 't2', label: 'Tasks(List)' },
+            { code: 't3', label: 'Tab1' },
+            { code: 't4', label: 'Tab2' },
+            { code: 't9', label: 'Attributes' },
+        ],
+    });
+
+    return (
         <Box>
+          <Container ref={ref}>
+            <Breadcrumb/>
 
-          <Box sx={{mt:3}}>
-            <H>
-              {prj.title()}
+            <Box sx={{mt:1}}>
+              <H lev="6">
+                {prj.title()}
 
-              <span>
-                (
-                {prj.number()}
-                )
-              </span>
-            </H>
-          </Box>
-
-          <Box sx={{mt:6}}>
-            <H lev="5">Attributes</H>
-            <Box sx={{display:'flex', flexWrap:'wrap', pl:2, pr:2}}>
+                <span>
+                  (
+                  <LinkOS href={prj.url()}>
+                    {prj.number()}
+                  </LinkOS>
+                  )
+                </span>
+              </H>
             </Box>
-          </Box>
 
-          <Box sx={{mt:6}}>
-            <H lev="5">Tasks</H>
-            <Box sx={{display:'flex', flexWrap:'wrap', pl:2, pr:2}}>
+            <Box sx={{mt:1}}>
+              <P>Attributes ........</P>
+              <Box sx={{display:'flex', flexWrap:'wrap', pl:2, pr:2}}>
+              </Box>
             </Box>
-          </Box>
+          </Container>
 
+          <Tabs data={tabs} onChange={v=>setTabs(v)}/>
         </Box>
     );
 }

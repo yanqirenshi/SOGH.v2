@@ -56,8 +56,6 @@ function Contents (props) {
 
     if (!team) return null;
 
-    console.log(team);
-
     return (
         <Box sx={{pb:33}}>
 
@@ -66,23 +64,21 @@ function Contents (props) {
 
           <Box sx={{mt:3, pl:5, pr:5}}>
             <Box>
-              <H lev="6">Teams</H>
-              <Box sx={{display:'flex', flexWrap:'wrap'}}>
-                {team.teams().length === 0 &&
-                 <P>no teams</P>}
-                {team.teams().length > 0 &&
-                 team.teams().map((team)=>
-                     <ItemTeam key={team.id()} value={team} sx={{p:0.5}}/>)}
-              </Box>
-            </Box>
-
-            <Box sx={{mt:1}}>
               <H lev="6">Members</H>
               <Box sx={{display:'flex', flexWrap:'wrap'}}>
                 {team.members().map((member)=>
                     <ItemMember key={member.id()} value={member} sx={{p:0.5}}/>)}
               </Box>
             </Box>
+
+            {team.teams().length > 0 &&
+             <Box sx={{mt:1}}>
+               <H lev="6">Teams</H>
+               <Box sx={{display:'flex', flexWrap:'wrap'}}>
+                 {team.teams().map((team)=>
+                     <ItemTeam key={team.id()} value={team} sx={{p:0.5}}/>)}
+               </Box>
+             </Box>}
           </Box>
 
 

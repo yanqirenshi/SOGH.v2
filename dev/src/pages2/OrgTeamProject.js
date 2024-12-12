@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import {H} from 'tion';
-import { getOrganaization } from '../recoil2/ORGANAIZATION.js';
+import { getProjectAtOrg } from '../recoil2/PROJECT.js';
 
 import sogh from '../manegers/sogh.js';
 
@@ -31,7 +31,7 @@ export default function OrgTeamProject () {
             <Breadcrumb/>
 
             <Suspense fallback={<Loading/>}>
-              <Contents login={login} team_name={team_name} prj_number={prj_number}/>
+              <Contents login={login} prj_number={prj_number}/>
             </Suspense>
 
           </Container>
@@ -41,23 +41,39 @@ export default function OrgTeamProject () {
 }
 
 function Contents (props) {
-    const { login, team_name, prj_number } = props;
+    const { login, prj_number } = props;
 
-    const x = useRecoilValue(getOrganaization(login));
-    console.log([login, team_name, prj_number]);
-    console.log(x);
+    const id = useRecoilValue(getProjectAtOrg({login, prj_number}));
+
+    if (!id) return null;
+
+    const prj = sogh.projectV2(id);
+
+    if (!prj) return null;
 
     return (
         <Box>
 
-          <Box>
-            <H>Attributes</H>
+          <Box sx={{mt:3}}>
+            <H>
+              {prj.title()}
+
+              <span>
+                (
+                {prj.number()}
+                )
+              </span>
+            </H>
+          </Box>
+
+          <Box sx={{mt:6}}>
+            <H lev="5">Attributes</H>
             <Box sx={{display:'flex', flexWrap:'wrap', pl:2, pr:2}}>
             </Box>
           </Box>
 
-          <Box>
-            <H>Tasks</H>
+          <Box sx={{mt:6}}>
+            <H lev="5">Tasks</H>
             <Box sx={{display:'flex', flexWrap:'wrap', pl:2, pr:2}}>
             </Box>
           </Box>

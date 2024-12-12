@@ -4,6 +4,8 @@ import {P, LinkOS, LinkRR} from 'tion';
 export default function ItemOrganization (props) {
     const org = props.value;
 
+    if (!org) return null;
+
     return (
         <Box sx={{display:'flex', alignItems: 'center'}}>
 

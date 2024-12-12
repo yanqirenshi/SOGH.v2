@@ -3,9 +3,14 @@ export default class Matchmaker {
         this.sogh = sogh;
     }
     repository (node) {
-        if (node.owner)
-            this.sogh.node2user(node.owner);
+        return node;
+        // if (node.owner)
+        //     this.sogh.node2user(node.owner);
     }
     user (node) {
+        const x = this.sogh.node2user(node, true);
+    }
+    projectV2 (node) {
+        return node;
     }
 }

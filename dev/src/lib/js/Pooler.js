@@ -61,10 +61,11 @@ export default class Pooler extends Loader {
     /* **************************************************************** *
      *  Repository                                                      *
      * **************************************************************** */
-    node2repository (node) {
+    node2repository (node, matchmaking=false) {
         const pool = this.pool('repository');
 
-        this.matchmaker.repository(node);
+        if (!matchmaking)
+            this.matchmaker.repository(node);
 
         return pool.ensure(node, (d)=> new model.Repository(d));
     }
@@ -79,10 +80,11 @@ export default class Pooler extends Loader {
     /* **************************************************************** *
      *  User                                                            *
      * **************************************************************** */
-    node2user (node) {
+    node2user (node, matchmaking=false) {
         const pool = this.pool('user');
 
-        this.matchmaker.user(node);
+        if (!matchmaking)
+            this.matchmaker.user(node);
 
         return pool.ensure(node, (d)=> new model.User(d));
     }
@@ -94,10 +96,11 @@ export default class Pooler extends Loader {
     /* **************************************************************** *
      *  ProjectV2                                                     *
      * **************************************************************** */
-    node2projectV2 (node) {
+    node2projectV2 (node, matchmaking=false) {
         const {pool, item_class} = this.getPoolAndItemClass('project-v2');
 
-        // this.matchmaker.user(node);
+        if (!matchmaking)
+            this.matchmaker.projectV2(node);
 
         return pool.ensure(
             node,
@@ -194,7 +197,19 @@ export default class Pooler extends Loader {
     node2organization (node) {
         const pool = this.pool('organization');
 
-        // this.matchmaker.user(node);
+        const mm = this.matchmaker;
+
+        if (node.membersWithRole)
+            node.membersWithRole.edges.forEach((d)=> mm.user(d.node));
+
+        if (node.projectsV2)
+            node.projectsV2.edges.forEach((d)=> mm.projectV2(d.node));
+
+        if (node.repositories)
+            node.repositories.edges.forEach((d)=> mm.repository(d.node));
+
+        // if (node.teams)
+        //     console.log(node.teams.edges);
 
         return pool.ensure(node, (d)=>  new model.Organization(d));
     }

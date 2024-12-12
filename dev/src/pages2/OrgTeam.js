@@ -12,8 +12,8 @@ import sogh from '../manegers/sogh.js';
 
 import { GITHUB_AUTH } from '../recoil/GITHUB.js';
 
-import Loading from '../panels/Loading.js';
-
+import Loading from 'panels/Loading.js';
+import Breadcrumb from 'assemblies2/Breadcrumb.js';
 import ItemMember from 'assemblies2/ItemMember.js';
 import ItemTeam from 'assemblies2/ItemTeam.js';
 import TableRepositories from 'assemblies2/TableRepositories.js';
@@ -32,6 +32,8 @@ export default function OrgTeam () {
         <Box sx={{height:'100%',width:'100%', overflow:'auto'}}>
 
           <Container sx={{height:'100%'}}>
+
+            <Breadcrumb/>
 
             <Suspense fallback={<Loading/>}>
               <Contents login={login} team_name={team_name}/>

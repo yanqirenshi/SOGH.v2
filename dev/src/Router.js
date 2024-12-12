@@ -17,7 +17,7 @@ export default function Router () {
           <Route path='/' element={<Home/>} />
           <Route path='/organaizations/:login' element={<Organaization/>} />
           <Route path='/organaizations/:login/teams/:team_name' element={<OrgTeam/>} />
-          <Route path='/organaizations/:login/teams/:team_name/projects/:prj_name' element={<OrgTeamProject/>} />
+          <Route path='/organaizations/:login/teams/:team_name/projects/:prj_number' element={<OrgTeamProject/>} />
 
           {/* == iHub ================================================================ */}
           <Route path='/cockpit'

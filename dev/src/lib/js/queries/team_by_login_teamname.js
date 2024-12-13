@@ -3,11 +3,11 @@ import * as attr from './attributes.js';
 const query = `
 {
   organization(login: "@login") {
-    ${attr.team()}
+    id
     teams(query: "@team-name", first:1) {
       edges {
         node {
-          id
+          ${attr.team()}
           members {
             edges {
               node {

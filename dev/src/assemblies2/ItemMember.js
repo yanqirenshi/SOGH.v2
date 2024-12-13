@@ -4,6 +4,7 @@ import {P, LinkOS} from 'tion'; // , LinkRR
 export default function ItemMember (props) {
     const member = props.value;
     const sx = props.sx;
+    const size = props.size || 33;
 
     if (!member) return null;
 
@@ -17,7 +18,7 @@ export default function ItemMember (props) {
             <LinkOS href={member.url()}>
               <img src={member.avatarUrl()}
                    alt={member.name()}
-                   width="33px"/>
+                   width={`${size}px`}/>
             </LinkOS>
           </P>
 

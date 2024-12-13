@@ -25,6 +25,7 @@ dist/
 #####
 ##### dev
 #####
+dev/.env
 dev/.env.local
 dev/.eslintcache
 dev/node_modules

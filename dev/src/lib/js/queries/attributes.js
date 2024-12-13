@@ -41,6 +41,19 @@ createdAt
 updatedAt`;
 }
 
+export function repository () {
+    return `
+id
+name
+url
+description
+descriptionHTML
+createdAt
+updatedAt
+pushedAt
+`;
+}
+
 export function repositories () {
     return `
 id

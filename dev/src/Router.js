@@ -9,6 +9,7 @@ import Home from './pages2/Home.js';
 import Organaization from './pages2/Organaization.js';
 import OrgTeam from './pages2/OrgTeam.js';
 import OrgTeamProject from './pages2/OrgTeamProject.js';
+import OrgTeamRepository from './pages2/OrgTeamRepository.js';
 
 export default function Router () {
     return (
@@ -18,6 +19,7 @@ export default function Router () {
           <Route path='/organaizations/:login' element={<Organaization/>} />
           <Route path='/organaizations/:login/teams/:team_name' element={<OrgTeam/>} />
           <Route path='/organaizations/:login/teams/:team_name/projects/:prj_number' element={<OrgTeamProject/>} />
+          <Route path='/organaizations/:login/teams/:team_name/repositories/:repo_name' element={<OrgTeamRepository/>} />
 
           {/* == iHub ================================================================ */}
           <Route path='/cockpit'

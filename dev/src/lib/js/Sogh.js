@@ -503,6 +503,31 @@ export default class Sogh extends Pooler {
 
         return out;
     }
+    async asyncFetchRepositoryByLoginRepoName (login, repo_name) {
+        const query = this.query('repository')
+              .replace('@owner', login)
+              .replace('@name', repo_name);
+
+        const post_data = this.postData(query);
+
+        // fetch
+        const response = await fetch(this.endpoint(), post_data)
+              .then(res  => this.text2json(res))
+              .then(res  => this.json2response(res, d=> {
+                  return d.data.repository || null;
+              }))
+              .catch(err => this.error2response(err));
+
+        // case of error
+        if ('error'===response.type)
+            return response.data;
+
+        // nodes 2 objs and pooling
+        if (!response.data)
+            return null;
+
+        return this.node2repository(response.data).id();
+    }
     /////
     ///// Issue
     /////

@@ -1,13 +1,8 @@
+import * as attr from './attributes.js';
+
 const query = `{
   repository(name: "@name", owner: "@owner") {
-    id
-    name
-    url
-    description
-    descriptionHTML
-    createdAt
-    updatedAt
-    pushedAt
+    ${attr.repository()}
     owner {
       id
       login

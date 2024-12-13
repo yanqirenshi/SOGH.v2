@@ -36,13 +36,29 @@ export default function OrgTeamProject () {
 function Contents (props) {
     const { login, prj_number } = props;
 
-    const [bounds, setBounds] = React.useState({height:0});
-
     const id = useRecoilValue(getProjectAtOrg({login, prj_number}));
 
     if (!id) return null;
 
-    const prj = sogh.projectV2(id);
+    return (
+        <Panel value={sogh.projectV2(id)}/>
+    );
+}
+
+
+function Panel (props) {
+    const prj = props.value;
+
+    const [bounds, setBounds] = React.useState({height:0});
+    const [tabs, setTabs] = React.useState({
+        selected: 't1',
+        list: [
+            { code: 't1', label: 'Tasks(Board)' },
+            { code: 't2', label: 'Tasks(List)' },
+            { code: 't3', label: 'Issues' },
+            { code: 't9', label: 'Attributes' },
+        ],
+    });
 
     if (!prj) return null;
 
@@ -50,7 +66,8 @@ function Contents (props) {
         <>
           <Measure bounds onResize={contentRect => setBounds(contentRect.bounds)}>
             {({ measureRef }) => (
-                <Header ref={measureRef} value={prj}/>
+                <Header ref={measureRef} value={prj}
+                        tabs={tabs} onChangeTabs={v=>setTabs(v)}/>
             )}
           </Measure>
 
@@ -59,6 +76,10 @@ function Contents (props) {
               background:'#fff',
               overflow:'auto'
           }}>
+            {tabs.selected==='t1' && <TabTasksBoard/>}
+            {tabs.selected==='t2' && <TabTasksList/>}
+            {tabs.selected==='t3' && <TabIssues/>}
+            {tabs.selected==='t9' && <TabTasksAttributes/>}
           </Box>
         </>
     );
@@ -67,21 +88,12 @@ function Contents (props) {
 function Header (props) {
     const prj = props.value;
     const ref = props.ref;
-
-    const [tabs, setTabs] = React.useState({
-        selected: 't1',
-        list: [
-            { code: 't1', label: 'Tasks(Board)' },
-            { code: 't2', label: 'Tasks(List)' },
-            { code: 't3', label: 'Tab1' },
-            { code: 't4', label: 'Tab2' },
-            { code: 't9', label: 'Attributes' },
-        ],
-    });
+    const tabs = props.tabs;
+    const onChangeTabs = props.onChangeTabs;
 
     return (
-        <Box>
-          <Container ref={ref}>
+        <Box ref={ref}>
+          <Container>
             <Breadcrumb/>
 
             <Box sx={{mt:1}}>
@@ -105,7 +117,31 @@ function Header (props) {
             </Box>
           </Container>
 
-          <Tabs data={tabs} onChange={v=>setTabs(v)}/>
+          <Tabs data={tabs} onChange={onChangeTabs}/>
         </Box>
+    );
+}
+
+function TabTasksBoard () {
+    return (
+        <P>TabTasksBoard</P>
+    );
+}
+
+function TabTasksList () {
+    return (
+        <P>TabTasksList</P>
+    );
+}
+
+function TabIssues () {
+    return (
+        <P>TabIssues</P>
+    );
+}
+
+function TabTasksAttributes () {
+    return (
+        <P>TabTasksAttributes</P>
     );
 }

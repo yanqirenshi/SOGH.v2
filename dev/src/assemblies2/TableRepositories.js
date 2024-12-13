@@ -1,4 +1,4 @@
-import {Table} from 'tion'; // P, LinkOS, LinkRR
+import {Table, LinkRR} from 'tion'; // P, LinkOS, LinkRR
 
 export default function TableRepositories (props) {
     const repositories = props.value;
@@ -33,7 +33,11 @@ const columns = [
         label: 'Name',
         sx: {whiteSpace: 'nowrap'},
         val: (row)=> {
-            return row.name();
+            return (
+                <LinkRR href={`${window.location.pathname}/repositories/${row.name()}`}>
+                  {row.name()}
+                </LinkRR>
+            );
         },
     },
     {

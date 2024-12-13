@@ -86,11 +86,12 @@ function Panel (props) {
 
 function Head (props) {
     const team = props.team;
+    const ref = props.ref;
     const tabs = props.tabs;
     const onChangeTabs = props.onChangeTabs;
 
     return (
-        <Box>
+        <Box ref={ref}>
           <Container sx={{height:'100%'}}>
             <Breadcrumb/>
 
